@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+   <bean id="readWordFile" 
+           class="com.funalgos.helpers.ReadWordFile">
+           <property name="dictionaryFile" value="classpath:/com/funalgos/inputfiles/sorted_dictionary.txt"></property>
+   </bean>
+   
+   <bean id="wordLadder" 
+           class="com.funalgos.algos.impl.WordLadder">
+           <property name="readWordFile" ref="readWordFile"></property>
+   </bean>
+   
+   <!-- Service beans -->
+   <bean id="algoService" 
+           class="com.funalgos.rest.AlgoService">
+           <property name="wordLadder" ref="wordLadder"></property>
+   </bean>
+ 
+</beans>
